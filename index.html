@@ -71,21 +71,19 @@
             padding: 20px 0;
         }
 
-        /* ИСПРАВЛЕНИЕ: центрируем всё содержимое шапки */
         .hero-content {
             display: flex;
-            flex-direction: column;   /* Элементы идут вертикально, друг под другом */
-            align-items: center;      /* Центрирование по горизонтали */
-            text-align: center;       /* Текст по центру */
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
             width: 100%;
             max-width: 800px;
             padding: 0 20px;
         }
 
-        /* Стили для аватарки */
         .avatar {
             display: block;
-            margin: 0 auto 1.5rem auto; /* Центрирование + отступ снизу */
+            margin: 0 auto 1.5rem auto;
             width: 150px;
             height: 150px;
             border-radius: 50%;
@@ -194,9 +192,8 @@
     <!-- СЕКЦИЯ 1: Главная информация (Hero) -->
     <header id="home">
         <div class="hero-content">
-            <!-- АВАТАРКА -->
-            <!-- Замените src="..." на src="avatar.jpg" когда загрузите своё фото на GitHub -->
-            <img src="https://ui-avatars.com/api/?name=Мухаммад+Кодзоев&background=2563eb&color=fff&size=200" 
+            <!-- ИСПРАВЛЕННАЯ АВАТАРКА с &amp; вместо & -->
+            <img src="https://ui-avatars.com/api/?name=Мухаммад+Кодзоев&amp;background=2563eb&amp;color=fff&amp;size=200" 
                  alt="Фото Мухаммада Кодзоева" 
                  class="avatar">
             
@@ -284,7 +281,7 @@
                 <span class="skill-tag">JavaScript (ES6+)</span>
                 <span class="skill-tag">React.js</span>
                 <span class="skill-tag">Git / GitHub</span>
-                <span class="skill-tag">Flexbox & CSS Grid</span>
+                <span class="skill-tag">Flexbox &amp; CSS Grid</span>
             </div>
             <div class="skill-category" style="margin-top: 2rem;">Мягкие навыки (Soft Skills)</div>
             <div class="skills-grid">
