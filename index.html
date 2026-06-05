@@ -1,1 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Резюме Кодзоева Мухаммада Иссаевича - Веб-разработчика">
+    <title>Резюме | Кодзоев Мухаммад Иссаевич</title>
+    
+    <style>
+        /* =========================================
+           1. ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ
+           ========================================= */
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* =========================================
+           2. УТИЛИТЫ И АНИМАЦИИ
+           ========================================= */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .section-title {
+            font-size: 2rem; margin-bottom: 2rem; text-align: center;
+            color: var(--text-main); position: relative;
+        }
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 4px;
+            background: var(--primary-color); margin: 10px auto 0; border-radius: 2px;
+        }
+        section {
+            padding: 4rem 0; opacity: 0; transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        section.is-visible { opacity: 1; transform: translateY(0); }
+
+        .btn {
+            display: inline-block; padding: 12px 24px; background-color: var(--primary-color);
+            color: white; text-decoration: none; border-radius: 8px; font-weight: 600;
+            border: none; cursor: pointer; transition: var(--transition); font-size: 1rem;
+        }
+        .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); box-shadow: var(--shadow); }
+        .btn-outline { background-color: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); margin-left: 10px; }
+        .btn-outline:hover { background-color: var(--primary-color); color: white; }
+
+        /* =========================================
+           3. ШАПКА (HERO SECTION) + АВАТАР
+           ========================================= */
+        header {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        /* Стили для аватарки */
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Делает изображение круглым */
+            object-fit: cover; /* Обрезает изображение, сохраняя пропорции, чтобы не сплющивалось */
+            border: 4px solid var(--card-bg); /* Белая рамка вокруг фото */
+            box-shadow: var(--shadow); /* Легкая тень */
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+        .avatar:hover { transform: scale(1.05); } /* Небольшое увеличение при наведении */
+
+        .hero-content h1 { font-size: 3rem; margin-bottom: 0.5rem; color: var(--text-main); }
+        .hero-content .subtitle { font-size: 1.5rem; color: var(--primary-color); font-weight: 500; margin-bottom: 1.5rem; }
+        .hero-content .description { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
+        .hero-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+
+        /* =========================================
+           4. ОПЫТ РАБОТЫ И ОБРАЗОВАНИЕ
+           ========================================= */
+        .timeline { display: grid; gap: 2rem; }
+        .card {
+            background: var(--card-bg); padding: 2rem; border-radius: 12px;
+            box-shadow: var(--shadow); border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.25rem; font-weight: 700; color: var(--text-main); }
+        .card-subtitle { color: var(--primary-color); font-weight: 600; }
+        .card-date { color: var(--text-secondary); font-size: 0.9rem; background: var(--bg-color); padding: 4px 12px; border-radius: 20px; }
+        .card-description { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* =========================================
+           5. НАВЫКИ
+           ========================================= */
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+        .skill-category { width: 100%; text-align: center; margin-bottom: 1rem; font-size: 1.2rem; font-weight: 600; color: var(--text-main); }
+        .skill-tag {
+            background: var(--card-bg); color: var(--text-main); padding: 8px 16px;
+            border-radius: 20px; font-size: 0.95rem; font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .skill-tag:hover { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+
+        /* =========================================
+           6. ФОРМА ОБРАТНОЙ СВЯЗИ
+           ========================================= */
+        .contact-form { max-width: 600px; margin: 0 auto; background: var(--card-bg); padding: 2.5rem; border-radius: 12px; box-shadow: var(--shadow); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-main); }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px; border: 1px solid var(--border-color);
+            border-radius: 8px; font-size: 1rem; font-family: inherit;
+            transition: var(--transition); background: var(--bg-color);
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .error-message { color: #ef4444; font-size: 0.85rem; margin-top: 5px; display: none; }
+        .success-message {
+            background: #dcfce7; color: #166534; padding: 1rem; border-radius: 8px;
+            text-align: center; margin-top: 1rem; display: none;
+        }
+
+        /* =========================================
+           7. ПОДВАЛ
+           ========================================= */
+        footer { text-align: center; padding: 2rem 0; background: var(--text-main); color: white; margin-top: 4rem; }
+
+        /* =========================================
+           8. АДАПТИВНОСТЬ
+           ========================================= */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content .subtitle { font-size: 1.2rem; }
+            .card-header { flex-direction: column; }
+            .contact-form { padding: 1.5rem; }
+            .btn-outline { margin-left: 0; margin-top: 10px; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; max-width: 300px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- СЕКЦИЯ 1: Главная информация (Hero) -->
+    <header id="home">
+        <div class="container hero-content">
+            <!-- БЛОК АВАТАРКИ -->
+            <!-- ЗАМЕНИТЕ src на путь к вашему фото, например: src="avatar.jpg" -->
+            <img src="avatar.jpg" alt="Фото Мухаммада Кодзоева" class="avatar"> 
+                 alt="Фото Мухаммада Кодзоева" 
+                 class="avatar">
+            
+            <h1>Кодзоев Мухаммад Иссаевич</h1>
+            <p class="subtitle">Frontend / Веб-разработчик</p>
+            <p class="description">
+                Начинающий, но амбициозный разработчик, увлеченный созданием современных, 
+                адаптивных и удобных веб-интерфейсов. Стремлюсь писать чистый код 
+                и постоянно совершенствовать свои навыки.
+            </p>
+            <div class="hero-buttons">
+                <a href="#" class="btn" onclick="alert('Здесь будет ссылка на скачивание PDF-файла резюме.'); return false;">
+                    📄 Скачать резюме
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    ✉️ Связаться со мной
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- СЕКЦИЯ 2: Опыт работы -->
+        <section id="experience">
+            <h2 class="section-title">Опыт работы</h2>
+            <div class="timeline">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Junior Frontend Разработчик</div>
+                            <div class="card-subtitle">IT-Компания "ТехноПрогресс"</div>
+                        </div>
+                        <span class="card-date">Июнь 2023 – Настоящее время</span>
+                    </div>
+                    <p class="card-description">
+                        • Разработка адаптивных пользовательских интерфейсов с использованием HTML, CSS и JavaScript.<br>
+                        • Оптимизация производительности веб-страниц и исправление багов.<br>
+                        • Участие в код-ревью и командных обсуждениях архитектуры.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Стажер-разработчик</div>
+                            <div class="card-subtitle">Веб-студия "Креатив"</div>
+                        </div>
+                        <span class="card-date">Январь 2023 – Май 2023</span>
+                    </div>
+                    <p class="card-description">
+                        • Верстка макетов из Figma с использованием Flexbox и CSS Grid.<br>
+                        • Написание простых скриптов на JavaScript для интерактивности элементов.<br>
+                        • Работа с системой контроля версий Git.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЕКЦИЯ 3: Образование -->
+        <section id="education">
+            <h2 class="section-title">Образование</h2>
+            <div class="timeline">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Бакалавр информатики и вычислительной техники</div>
+                            <div class="card-subtitle">ИнгГУ (Ингушский государственный университет)</div>
+                        </div>
+                        <span class="card-date">2020 – 2024</span>
+                    </div>
+                    <p class="card-description">
+                        Изучение основ программирования, алгоритмов, структур данных и веб-технологий. 
+                        Дипломный проект: "Разработка адаптивного веб-приложения для учета задач".
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЕКЦИЯ 4: Навыки -->
+        <section id="skills">
+            <h2 class="section-title">Навыки</h2>
+            <div class="skill-category">Технические навыки</div>
+            <div class="skills-grid">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3 / SCSS</span>
+                <span class="skill-tag">JavaScript (ES6+)</span>
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">Git / GitHub</span>
+                <span class="skill-tag">Flexbox & CSS Grid</span>
+            </div>
+            <div class="skill-category" style="margin-top: 2rem;">Мягкие навыки (Soft Skills)</div>
+            <div class="skills-grid">
+                <span class="skill-tag">Командная работа</span>
+                <span class="skill-tag">Решение проблем</span>
+                <span class="skill-tag">Тайм-менеджмент</span>
+                <span class="skill-tag">Обучаемость</span>
+            </div>
+        </section>
+
+        <!-- СЕКЦИЯ 5: Контактная форма -->
+        <section id="contact">
+            <h2 class="section-title">Связаться со мной</h2>
+            <form class="contact-form" id="contactForm" novalidate>
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" value="Мухаммад" placeholder="Введите ваше имя" required>
+                    <div class="error-message" id="nameError">Пожалуйста, введите корректное имя (минимум 2 символа).</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="koazoy@mail.ru" placeholder="example@mail.ru" required>
+                    <div class="error-message" id="emailError">Пожалуйста, введите корректный email адрес.</div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" name="message" placeholder="Напишите ваше сообщение здесь..." required></textarea>
+                    <div class="error-message" id="messageError">Сообщение не может быть пустым (минимум 10 символов).</div>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Отправить сообщение</button>
+                <div class="success-message" id="successMessage">
+                    ✅ Сообщение успешно отправлено! Я свяжусь с вами в ближайшее время.
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Кодзоев Мухаммад Иссаевич. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация появления секций при прокрутке
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+        // Валидация формы
+        const form = document.getElementById('contactForm');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let isValid = true;
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.getElementById('successMessage').style.display = 'none';
+
+            if (document.getElementById('name').value.trim().length < 2) {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+            if (!emailRegex.test(document.getElementById('email').value.trim())) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+            if (document.getElementById('message').value.trim().length < 10) {
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                const btn = form.querySelector('button[type="submit"]');
+                btn.textContent = 'Отправка...';
+                btn.disabled = true;
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'block';
+                    form.reset();
+                    document.getElementById('name').value = "Мухаммад";
+                    document.getElementById('email').value = "koazoy@mail.ru";
+                    btn.textContent = 'Отправить сообщение';
+                    btn.disabled = false;
+                }, 1500);
+            }
+        });
+    </script>
+</body>
+</html>
