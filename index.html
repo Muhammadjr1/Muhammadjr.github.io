@@ -63,26 +63,62 @@
            3. ШАПКА (HERO SECTION) + АВАТАР
            ========================================= */
         header {
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 20px 0;
         }
+
+        /* ИСПРАВЛЕНИЕ: центрируем всё содержимое шапки */
+        .hero-content {
+            display: flex;
+            flex-direction: column;   /* Элементы идут вертикально, друг под другом */
+            align-items: center;      /* Центрирование по горизонтали */
+            text-align: center;       /* Текст по центру */
+            width: 100%;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
         /* Стили для аватарки */
         .avatar {
+            display: block;
+            margin: 0 auto 1.5rem auto; /* Центрирование + отступ снизу */
             width: 150px;
             height: 150px;
-            border-radius: 50%; /* Делает изображение круглым */
-            object-fit: cover; /* Обрезает изображение, сохраняя пропорции, чтобы не сплющивалось */
-            border: 4px solid var(--card-bg); /* Белая рамка вокруг фото */
-            box-shadow: var(--shadow); /* Легкая тень */
-            margin-bottom: 1.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--card-bg);
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
-        .avatar:hover { transform: scale(1.05); } /* Небольшое увеличение при наведении */
+        .avatar:hover { transform: scale(1.05); }
 
-        .hero-content h1 { font-size: 3rem; margin-bottom: 0.5rem; color: var(--text-main); }
-        .hero-content .subtitle { font-size: 1.5rem; color: var(--primary-color); font-weight: 500; margin-bottom: 1.5rem; }
-        .hero-content .description { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
-        .hero-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .hero-content h1 { 
+            font-size: 3rem; 
+            margin-bottom: 0.5rem; 
+            color: var(--text-main); 
+        }
+        .hero-content .subtitle { 
+            font-size: 1.5rem; 
+            color: var(--primary-color); 
+            font-weight: 500; 
+            margin-bottom: 1.5rem; 
+        }
+        .hero-content .description { 
+            font-size: 1.1rem; 
+            color: var(--text-secondary); 
+            max-width: 600px; 
+            margin: 0 auto 2rem; 
+        }
+        .hero-buttons { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            flex-wrap: wrap; 
+        }
 
         /* =========================================
            4. ОПЫТ РАБОТЫ И ОБРАЗОВАНИЕ
@@ -157,10 +193,10 @@
 
     <!-- СЕКЦИЯ 1: Главная информация (Hero) -->
     <header id="home">
-        <div class="container hero-content">
-            <!-- БЛОК АВАТАРКИ -->
-            <!-- ЗАМЕНИТЕ src на путь к вашему фото, например: src="avatar.jpg" -->
-            <img src="avatar.jpg" alt="Фото Мухаммада Кодзоева" class="avatar"> 
+        <div class="hero-content">
+            <!-- АВАТАРКА -->
+            <!-- Замените src="..." на src="avatar.jpg" когда загрузите своё фото на GitHub -->
+            <img src="https://ui-avatars.com/api/?name=Мухаммад+Кодзоев&background=2563eb&color=fff&size=200" 
                  alt="Фото Мухаммада Кодзоева" 
                  class="avatar">
             
