@@ -11,369 +11,562 @@
            1. ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ
            ========================================= */
         :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-secondary: #64748b;
-            --border-color: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --primary-color: #2563eb;       /* Основной синий цвет */
+            --primary-hover: #1d4ed8;       /* Цвет при наведении */
+            --bg-color: #f8fafc;            /* Светлый фон страницы */
+            --card-bg: #ffffff;             /* Фон карточек */
+            --text-main: #1e293b;           /* Основной цвет текста */
+            --text-secondary: #64748b;      /* Вторичный цвет текста */
+            --border-radius: 12px;          /* Скругление углов */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             --transition: all 0.3s ease;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Плавная прокрутка для якорных ссылок */
+        }
+
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* =========================================
-           2. УТИЛИТЫ И АНИМАЦИИ
-           ========================================= */
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-        .section-title {
-            font-size: 2rem; margin-bottom: 2rem; text-align: center;
-            color: var(--text-main); position: relative;
-        }
-        .section-title::after {
-            content: ''; display: block; width: 60px; height: 4px;
-            background: var(--primary-color); margin: 10px auto 0; border-radius: 2px;
-        }
-        section {
-            padding: 4rem 0; opacity: 0; transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        section.is-visible { opacity: 1; transform: translateY(0); }
-
-        .btn {
-            display: inline-block; padding: 12px 24px; background-color: var(--primary-color);
-            color: white; text-decoration: none; border-radius: 8px; font-weight: 600;
-            border: none; cursor: pointer; transition: var(--transition); font-size: 1rem;
-        }
-        .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); box-shadow: var(--shadow); }
-        .btn-outline { background-color: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); margin-left: 10px; }
-        .btn-outline:hover { background-color: var(--primary-color); color: white; }
-
-        /* =========================================
-           3. ШАПКА (HERO SECTION) + АВАТАР
-           ========================================= */
-        header {
-            min-height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            padding: 20px 0;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-            max-width: 800px;
+        /* Контейнер для центрирования контента */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
             padding: 0 20px;
         }
 
+        /* =========================================
+           2. АНИМАЦИИ ПОЯВЛЕНИЯ ПРИ ПРОКРУТКЕ
+           ========================================= */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* =========================================
+           3. ШАПКА (HERO SECTION)
+           ========================================= */
+        header {
+            text-align: center;
+            padding: 80px 0 60px;
+            background: linear-gradient(to bottom, #ffffff, var(--bg-color));
+        }
+
         .avatar {
-            display: block;
-            margin: 0 auto 1.5rem auto;
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--card-bg);
             box-shadow: var(--shadow);
+            margin-bottom: 24px;
             transition: var(--transition);
         }
-        .avatar:hover { transform: scale(1.05); }
 
-        .hero-content h1 { 
-            font-size: 3rem; 
-            margin-bottom: 0.5rem; 
-            color: var(--text-main); 
+        .avatar:hover {
+            transform: scale(1.05);
         }
-        .hero-content .subtitle { 
-            font-size: 1.5rem; 
-            color: var(--primary-color); 
-            font-weight: 500; 
-            margin-bottom: 1.5rem; 
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
         }
-        .hero-content .description { 
-            font-size: 1.1rem; 
-            color: var(--text-secondary); 
-            max-width: 600px; 
-            margin: 0 auto 2rem; 
+
+        .title {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 16px;
         }
-        .hero-buttons { 
-            display: flex; 
-            justify-content: center; 
-            gap: 15px; 
-            flex-wrap: wrap; 
+
+        .description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        /* Кнопки */
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--text-main);
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f1f5f9;
+            border-color: #cbd5e1;
         }
 
         /* =========================================
-           4. ОПЫТ РАБОТЫ И ОБРАЗОВАНИЕ
+           4. ОСНОВНЫЕ СЕКЦИИ (Опыт, Образование, Навыки)
            ========================================= */
-        .timeline { display: grid; gap: 2rem; }
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            display: inline-block;
+        }
+
+        /* Карточки для опыта и образования */
         .card {
-            background: var(--card-bg); padding: 2rem; border-radius: 12px;
-            box-shadow: var(--shadow); border-left: 4px solid var(--primary-color);
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
             transition: var(--transition);
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px; }
-        .card-title { font-size: 1.25rem; font-weight: 700; color: var(--text-main); }
-        .card-subtitle { color: var(--primary-color); font-weight: 600; }
-        .card-date { color: var(--text-secondary); font-size: 0.9rem; background: var(--bg-color); padding: 4px 12px; border-radius: 20px; }
-        .card-description { color: var(--text-secondary); font-size: 0.95rem; }
 
-        /* =========================================
-           5. НАВЫКИ
-           ========================================= */
-        .skills-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-        .skill-category { width: 100%; text-align: center; margin-bottom: 1rem; font-size: 1.2rem; font-weight: 600; color: var(--text-main); }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .card-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: #f1f5f9;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Сетка для навыков */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
         .skill-tag {
-            background: var(--card-bg); color: var(--text-main); padding: 8px 16px;
-            border-radius: 20px; font-size: 0.95rem; font-weight: 500;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid var(--border-color);
+            background: #eff6ff;
+            color: var(--primary-color);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* =========================================
+           5. ФОРМА ОБРАТНОЙ СВЯЗИ
+           ========================================= */
+        .contact-form {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
             transition: var(--transition);
         }
-        .skill-tag:hover { background: var(--primary-color); color: white; border-color: var(--primary-color); }
 
-        /* =========================================
-           6. ФОРМА ОБРАТНОЙ СВЯЗИ
-           ========================================= */
-        .contact-form { max-width: 600px; margin: 0 auto; background: var(--card-bg); padding: 2.5rem; border-radius: 12px; box-shadow: var(--shadow); }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-main); }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 12px; border: 1px solid var(--border-color);
-            border-radius: 8px; font-size: 1rem; font-family: inherit;
-            transition: var(--transition); background: var(--bg-color);
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
         }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        .error-message { color: #ef4444; font-size: 0.85rem; margin-top: 5px; display: none; }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-top: 6px;
+            display: none; /* Скрыто по умолчанию */
+        }
+
         .success-message {
-            background: #dcfce7; color: #166534; padding: 1rem; border-radius: 8px;
-            text-align: center; margin-top: 1rem; display: none;
+            background: #dcfce7;
+            color: #166534;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
         }
 
         /* =========================================
-           7. ПОДВАЛ
+           6. ПОДВАЛ (FOOTER)
            ========================================= */
-        footer { text-align: center; padding: 2rem 0; background: var(--text-main); color: white; margin-top: 4rem; }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
 
         /* =========================================
-           8. АДАПТИВНОСТЬ
+           7. АДАПТИВНОСТЬ (MEDIA QUERIES)
            ========================================= */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.2rem; }
-            .hero-content .subtitle { font-size: 1.2rem; }
-            .card-header { flex-direction: column; }
-            .contact-form { padding: 1.5rem; }
-            .btn-outline { margin-left: 0; margin-top: 10px; }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .btn { width: 100%; max-width: 300px; text-align: center; }
+            h1 { font-size: 2rem; }
+            .title { font-size: 1.1rem; }
+            
+            .card-header {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- СЕКЦИЯ 1: Главная информация (Hero) -->
-    <header id="home">
-        <div class="hero-content">
-            <!-- ИСПРАВЛЕННАЯ АВАТАРКА с &amp; вместо & -->
-            <img src="https://ui-avatars.com/api/?name=Мухаммад+Кодзоев&amp;background=2563eb&amp;color=fff&amp;size=200" 
-                 alt="Фото Мухаммада Кодзоева" 
-                 class="avatar">
+    <!-- Шапка профиля -->
+    <header class="fade-in-section">
+        <div class="container">
+            <!-- ВАЖНО: Убедитесь, что файл avatar.jpg лежит в той же папке -->
+            <img src="avatar.jpg" alt="Кодзоев Мухаммад Иссаевич" class="avatar" onerror="this.src='https://via.placeholder.com/160?text=Avatar'">
             
             <h1>Кодзоев Мухаммад Иссаевич</h1>
-            <p class="subtitle">Frontend / Веб-разработчик</p>
+            <p class="title">Веб-разработчик / Frontend-специалист</p>
             <p class="description">
-                Начинающий, но амбициозный разработчик, увлеченный созданием современных, 
-                адаптивных и удобных веб-интерфейсов. Стремлюсь писать чистый код 
-                и постоянно совершенствовать свои навыки.
+                Увлеченный разработчик, создающий современные, адаптивные и удобные веб-приложения. 
+                Стремлюсь писать чистый код и постоянно изучаю новые технологии для решения сложных задач.
             </p>
-            <div class="hero-buttons">
-                <a href="#" class="btn" onclick="alert('Здесь будет ссылка на скачивание PDF-файла резюме.'); return false;">
-                    📄 Скачать резюме
-                </a>
-                <a href="#contact" class="btn btn-outline">
-                    ✉️ Связаться со мной
-                </a>
+            
+            <div class="btn-group">
+                <!-- Псевдо-ссылка на скачивание (замените resume.pdf на реальный файл при его наличии) -->
+                <a href="resume.pdf" class="btn btn-primary" download>Скачать резюме (PDF)</a>
+                <a href="#contact" class="btn btn-secondary">Связаться со мной</a>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <!-- СЕКЦИЯ 2: Опыт работы -->
-        <section id="experience">
+        
+        <!-- Секция: Опыт работы -->
+        <section id="experience" class="fade-in-section">
             <h2 class="section-title">Опыт работы</h2>
-            <div class="timeline">
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">Junior Frontend Разработчик</div>
-                            <div class="card-subtitle">IT-Компания "ТехноПрогресс"</div>
-                        </div>
-                        <span class="card-date">Июнь 2023 – Настоящее время</span>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Junior Frontend Разработчик</div>
+                        <div class="card-subtitle">ООО "ТехноСофт"</div>
                     </div>
-                    <p class="card-description">
-                        • Разработка адаптивных пользовательских интерфейсов с использованием HTML, CSS и JavaScript.<br>
-                        • Оптимизация производительности веб-страниц и исправление багов.<br>
-                        • Участие в код-ревью и командных обсуждениях архитектуры.
-                    </p>
+                    <span class="card-date">Янв 2025 — Наст. время</span>
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">Стажер-разработчик</div>
-                            <div class="card-subtitle">Веб-студия "Креатив"</div>
-                        </div>
-                        <span class="card-date">Январь 2023 – Май 2023</span>
+                <p class="card-description">
+                    • Разработка и поддержка пользовательских интерфейсов с использованием HTML, CSS и JavaScript.<br>
+                    • Оптимизация веб-страниц для максимальной скорости загрузки.<br>
+                    • Участие в код-ревью и совместная работа с командой дизайнеров.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Стажер Веб-разработчик</div>
+                        <div class="card-subtitle">IT-Студия "ВебМастер"</div>
                     </div>
-                    <p class="card-description">
-                        • Верстка макетов из Figma с использованием Flexbox и CSS Grid.<br>
-                        • Написание простых скриптов на JavaScript для интерактивности элементов.<br>
-                        • Работа с системой контроля версий Git.
-                    </p>
+                    <span class="card-date">Июн 2024 — Дек 2024</span>
                 </div>
+                <p class="card-description">
+                    • Верстка адаптивных макетов из Figma.<br>
+                    • Исправление багов и доработка функционала существующих проектов.<br>
+                    • Изучение основ работы с Git и командной разработки.
+                </p>
             </div>
         </section>
 
-        <!-- СЕКЦИЯ 3: Образование -->
-        <section id="education">
+        <!-- Секция: Образование -->
+        <section id="education" class="fade-in-section">
             <h2 class="section-title">Образование</h2>
-            <div class="timeline">
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">Бакалавр информатики и вычислительной техники</div>
-                            <div class="card-subtitle">ИнгГУ (Ингушский государственный университет)</div>
-                        </div>
-                        <span class="card-date">2020 – 2024</span>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Бакалавр информатики и вычислительной техники</div>
+                        <div class="card-subtitle">Ингушский государственный университет</div>
                     </div>
-                    <p class="card-description">
-                        Изучение основ программирования, алгоритмов, структур данных и веб-технологий. 
-                        Дипломный проект: "Разработка адаптивного веб-приложения для учета задач".
-                    </p>
+                    <span class="card-date">2020 — 2024</span>
+                </div>
+                <p class="card-description">
+                    Изучение алгоритмов, структур данных, веб-технологий и баз данных. 
+                    Дипломный проект: "Разработка адаптивного веб-портала для университета".
+                </p>
+            </div>
+        </section>
+
+        <!-- Секция: Навыки -->
+        <section id="skills" class="fade-in-section">
+            <h2 class="section-title">Навыки</h2>
+            
+            <div class="skills-grid">
+                <div class="card skill-category">
+                    <h3>Технические навыки</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript (ES6+)</span>
+                        <span class="skill-tag">Flexbox & Grid</span>
+                        <span class="skill-tag">Git / GitHub</span>
+                        <span class="skill-tag">Адаптивная верстка</span>
+                    </div>
+                </div>
+                
+                <div class="card skill-category">
+                    <h3>Мягкие навыки (Soft Skills)</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Коммуникабельность</span>
+                        <span class="skill-tag">Работа в команде</span>
+                        <span class="skill-tag">Управление временем</span>
+                        <span class="skill-tag">Решение проблем</span>
+                        <span class="skill-tag">Обучаемость</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- СЕКЦИЯ 4: Навыки -->
-        <section id="skills">
-            <h2 class="section-title">Навыки</h2>
-            <div class="skill-category">Технические навыки</div>
-            <div class="skills-grid">
-                <span class="skill-tag">HTML5</span>
-                <span class="skill-tag">CSS3 / SCSS</span>
-                <span class="skill-tag">JavaScript (ES6+)</span>
-                <span class="skill-tag">React.js</span>
-                <span class="skill-tag">Git / GitHub</span>
-                <span class="skill-tag">Flexbox &amp; CSS Grid</span>
-            </div>
-            <div class="skill-category" style="margin-top: 2rem;">Мягкие навыки (Soft Skills)</div>
-            <div class="skills-grid">
-                <span class="skill-tag">Командная работа</span>
-                <span class="skill-tag">Решение проблем</span>
-                <span class="skill-tag">Тайм-менеджмент</span>
-                <span class="skill-tag">Обучаемость</span>
-            </div>
-        </section>
-
-        <!-- СЕКЦИЯ 5: Контактная форма -->
-        <section id="contact">
+        <!-- Секция: Контакты -->
+        <section id="contact" class="fade-in-section">
             <h2 class="section-title">Связаться со мной</h2>
-            <form class="contact-form" id="contactForm" novalidate>
+            
+            <form class="contact-form" id="contactForm">
                 <div class="form-group">
                     <label for="name">Ваше имя</label>
-                    <input type="text" id="name" name="name" value="Мухаммад" placeholder="Введите ваше имя" required>
-                    <div class="error-message" id="nameError">Пожалуйста, введите корректное имя (минимум 2 символа).</div>
+                    <!-- Значение установлено согласно требованию -->
+                    <input type="text" id="name" name="name" value="Мухаммад" required>
+                    <div class="error-message" id="nameError">Пожалуйста, введите имя.</div>
                 </div>
+
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="koazoy@mail.ru" placeholder="example@mail.ru" required>
-                    <div class="error-message" id="emailError">Пожалуйста, введите корректный email адрес.</div>
+                    <!-- Значение установлено согласно требованию -->
+                    <input type="email" id="email" name="email" value="koazoy@mail.ru" required>
+                    <div class="error-message" id="emailError">Пожалуйста, введите корректный email.</div>
                 </div>
+
                 <div class="form-group">
                     <label for="message">Сообщение</label>
                     <textarea id="message" name="message" placeholder="Напишите ваше сообщение здесь..." required></textarea>
-                    <div class="error-message" id="messageError">Сообщение не может быть пустым (минимум 10 символов).</div>
+                    <div class="error-message" id="messageError">Сообщение не может быть пустым.</div>
                 </div>
-                <button type="submit" class="btn" style="width: 100%;">Отправить сообщение</button>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить сообщение</button>
+                
                 <div class="success-message" id="successMessage">
-                    ✅ Сообщение успешно отправлено! Я свяжусь с вами в ближайшее время.
+                    Спасибо! Ваше сообщение успешно отправлено. Я свяжусь с вами в ближайшее время.
                 </div>
             </form>
         </section>
+
     </main>
 
     <footer>
         <div class="container">
             <p>&copy; 2026 Кодзоев Мухаммад Иссаевич. Все права защищены.</p>
+            <p>Создано с использованием чистого HTML, CSS и JavaScript</p>
         </div>
     </footer>
 
+    <!-- =========================================
+         JAVASCRIPT ЛОГИКА
+         ========================================= -->
     <script>
-        // Анимация появления секций при прокрутке
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Анимация появления секций при прокрутке (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Срабатывает, когда 10% элемента видно
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Анимируем только один раз
+                    }
+                });
+            }, observerOptions);
+
+            // Находим все секции с классом fade-in-section и наблюдаем за ними
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // 2. Валидация и обработка формы обратной связи
+            const form = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Предотвращаем стандартную перезагрузку страницы
+
+                // Получаем значения полей
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                // Сбрасываем сообщения об ошибках
+                document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+                successMessage.style.display = 'none';
+
+                let isValid = true;
+
+                // Простая валидация
+                if (name === '') {
+                    document.getElementById('nameError').style.display = 'block';
+                    isValid = false;
+                }
+
+                // Регулярное выражение для проверки email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
+
+                if (message === '') {
+                    document.getElementById('messageError').style.display = 'block';
+                    isValid = false;
+                }
+
+                // Если все данные корректны
+                if (isValid) {
+                    // Здесь обычно идет отправка данных на сервер (например, через fetch)
+                    // Для демонстрации мы просто покажем сообщение об успехе и очистим форму
+                    
+                    console.log('Отправка данных:', { name, email, message });
+                    
+                    successMessage.style.display = 'block';
+                    form.reset(); // Очистка формы
+                    
+                    // Скролл к сообщению об успехе для удобства пользователя
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 }
             });
-        }, { threshold: 0.15 });
-
-        document.querySelectorAll('section').forEach(section => observer.observe(section));
-
-        // Валидация формы
-        const form = document.getElementById('contactForm');
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            let isValid = true;
-            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
-            document.getElementById('successMessage').style.display = 'none';
-
-            if (document.getElementById('name').value.trim().length < 2) {
-                document.getElementById('nameError').style.display = 'block';
-                isValid = false;
-            }
-            if (!emailRegex.test(document.getElementById('email').value.trim())) {
-                document.getElementById('emailError').style.display = 'block';
-                isValid = false;
-            }
-            if (document.getElementById('message').value.trim().length < 10) {
-                document.getElementById('messageError').style.display = 'block';
-                isValid = false;
-            }
-
-            if (isValid) {
-                const btn = form.querySelector('button[type="submit"]');
-                btn.textContent = 'Отправка...';
-                btn.disabled = true;
-                setTimeout(() => {
-                    document.getElementById('successMessage').style.display = 'block';
-                    form.reset();
-                    document.getElementById('name').value = "Мухаммад";
-                    document.getElementById('email').value = "koazoy@mail.ru";
-                    btn.textContent = 'Отправить сообщение';
-                    btn.disabled = false;
-                }, 1500);
-            }
         });
     </script>
 </body>
